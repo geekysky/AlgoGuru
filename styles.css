@@ -1,0 +1,184 @@
+/* Main button to trigger hints */
+#show-hint-button {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  z-index: 9998;
+  padding: 10px 18px;
+  background: linear-gradient(145deg, #6a5af9, #d66efd);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  font-size: 16px;
+  font-weight: 600;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease-in-out;
+}
+
+#show-hint-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+/* Styles for the new lightbulb SVG icon */
+#show-hint-button svg {
+    width: 22px; /* Slightly larger for better visibility */
+    height: 22px;
+    fill: #f1c40f; /* Yellow fill color for the lightbulb */
+}
+
+/* Modal styles */
+#hint-modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.6);
+  justify-content: center;
+  align-items: center;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+#hint-modal-content {
+  background-color: #282c34; /* Dark theme */
+  color: #abb2bf;
+  margin: auto;
+  padding: 25px 35px;
+  border: 1px solid #3e4451;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 600px;
+  position: relative;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Simplified header styling */
+#hint-modal-header {
+    border-bottom: 1px solid #3e4451;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+#hint-modal-header h2 {
+    margin: 0;
+    font-size: 22px;
+    color: #ffffff;
+}
+
+#hint-modal-close {
+  color: #888;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 32px;
+  font-weight: bold;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+#hint-modal-close:hover,
+#hint-modal-close:focus {
+  color: #ccc;
+  text-decoration: none;
+}
+
+#hint-modal-body {
+  line-height: 1.7;
+  font-size: 16px;
+}
+
+#hint-modal-body .error {
+    color: #e06c75; /* A reddish color for errors */
+    font-weight: bold;
+}
+
+/* Loader animation */
+.loader {
+  border: 4px solid #3e4451;
+  border-radius: 50%;
+  border-top: 4px solid #61afef; /* A nice blue */
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 20px auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* === ACCORDION STYLES === */
+
+.hint-accordion {
+    margin-bottom: 8px;
+    border-radius: 6px;
+    overflow: hidden; /* Important for the border-radius to apply to children */
+    border: 1px solid #3e4451;
+}
+
+.hint-accordion-header {
+    background-color: #3e4451;
+    color: #abb2bf;
+    cursor: pointer;
+    padding: 14px 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+}
+
+.hint-accordion-header:hover, .hint-accordion-header.active {
+    background-color: #4a505c;
+    color: #ffffff;
+}
+
+.hint-accordion-header .icon {
+    font-size: 20px;
+    font-weight: bold;
+    color: #61afef;
+}
+
+.hint-accordion-panel {
+    padding: 0 18px;
+    background-color: #282c34;
+    max-height: 0; /* Hidden by default */
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.hint-accordion-panel p {
+    margin: 15px 0;
+    font-size: 15px;
+    color: #c8ccd4;
+}
+
+.hint-accordion-panel p code {
+    background-color: #3e4451;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Courier New', Courier, monospace;
+    color: #98c379;
+}
